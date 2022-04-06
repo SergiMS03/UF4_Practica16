@@ -89,6 +89,7 @@ public class Juego {
         }
     }
     
+    /*Funciones por que si*/
     public void VeureUsu()
     {
         Carta c;
@@ -100,4 +101,8 @@ public class Juego {
         }
     }
     
+    public void TirarUnaCarta(){
+        CartasTiradas.add(CartasUsuari.get(0));
+        CartasUsuari.remove(0);
+    }
 }
