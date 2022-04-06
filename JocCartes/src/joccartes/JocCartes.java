@@ -22,6 +22,7 @@ public class JocCartes {
         j.demanarCartes();
         j.VeureMunt();
         j.VeureUsu();
+        j.TirarUnaCarta();
     }
     
 }
