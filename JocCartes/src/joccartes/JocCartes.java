@@ -17,9 +17,11 @@ public class JocCartes {
     public static void main(String[] args) {
         Juego j = new Juego();
         j.barreja();
-        j.repartirCartes();
         j.seguentCarta();
+        j.repartirCartes();
+        j.demanarCartes();
         j.VeureMunt();
+        j.VeureUsu();
     }
     
 }
