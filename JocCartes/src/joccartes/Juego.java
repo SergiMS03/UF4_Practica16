@@ -21,13 +21,14 @@ public class Juego {
     
     public void barreja(){
         Collections.shuffle(BarajaUsuari);
+        Collections.shuffle(BarajaMonton);
     }
     
     public Carta seguentCarta(){
         Carta aux = new Carta();
-        if(BarajaUsuari.size() > 0){
-            aux = BarajaUsuari.get(0);
-            BarajaUsuari.remove(0);
+        if(BarajaMonton.size() > 0){
+            aux = BarajaMonton.get(0);
+            BarajaMonton.remove(0);
         }else{
             System.out.println("No quedan mes cartes a la baralla");
         }
@@ -38,23 +39,42 @@ public class Juego {
         return BarajaUsuari.size();
     }
     
-    public ArrayList<Carta> demanarCartes(){//També es repartirCartes
-        ArrayList<Carta> aux = new ArrayList<>();
-        if (BarajaUsuari.size() <= 0) {
+    public void demanarCartes(){
+        Carta aux;
+        int numCartas = utils.LlegirIntLimitat("", 1, BarajaUsuari.size());
+        if (BarajaUsuari.size() < numCartas) {
             System.out.println("No queden cartas");
         }
         else{
-            int numCartas = utils.LlegirIntLimitat("", 1, BarajaUsuari.size());
             for (int i = 0; i < numCartas; i++) {
-                aux.add(seguentCarta());
+                aux = BarajaUsuari.get(0);
+                BarajaUsuari.remove(0);
+                BarajaUsuari.add(BarajaMonton.get(0));
+                BarajaMonton.remove(0);
+                BarajaMonton.add(aux);
             }
         }
-        return aux;
+    }
+    
+    public void repartirCartes(){
+        int numCartas = utils.LlegirIntLimitat("", 1, BarajaUsuari.size());
+        if (BarajaUsuari.size() < numCartas) {
+            System.out.println("No queden cartas");
+        }
+        else{
+            for (int i = 0; i < numCartas; i++) {
+                
+                BarajaUsuari.remove(0);
+                BarajaUsuari.add(BarajaMonton.get(0));
+                BarajaMonton.remove(0);
+                
+            }
+        }
     }
     
     public void VeureMunt(){
-        for (int i = 0; i < BarajaUsuari.size(); i++) {
-            
+        for (int i = 0; i < BarajaMonton.size(); i++) {
+            BarajaMonton.get(i);
         }
     }
     
