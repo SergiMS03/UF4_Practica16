@@ -15,7 +15,11 @@ public class JocCartes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Juego j = new Juego();
+        j.barreja();
+        j.repartirCartes();
+        j.seguentCarta();
+        j.VeureMunt();
     }
     
 }

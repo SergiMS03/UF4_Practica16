@@ -14,42 +14,48 @@ import Utils.utils;
  * @author ausias
  */
 public class Juego {
-    private ArrayList<Carta> BarajaUsuari = new ArrayList<>();
+    private ArrayList<Carta> CartasUsuari = new ArrayList<>();
     private ArrayList<Carta> BarajaMonton = new ArrayList<>();
+    private ArrayList<Carta> CartasTiradas = new ArrayList<>();
     
-    //CONSTRUCTOR POR DEFECTO, SIN PARAMETROS
+    public Juego(){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 1; j <= 12; j++) {
+                Carta c = new Carta(j, i);
+                BarajaMonton.add(c);
+            }
+        }
+    }
     
     public void barreja(){
-        Collections.shuffle(BarajaUsuari);
         Collections.shuffle(BarajaMonton);
     }
     
-    public Carta seguentCarta(){
-        Carta aux = new Carta();
+    public void seguentCarta(){
+        
         if(BarajaMonton.size() > 0){
-            aux = BarajaMonton.get(0);
+            CartasUsuari.add(BarajaMonton.get(0));
             BarajaMonton.remove(0);
         }else{
-            System.out.println("No quedan mes cartes a la baralla");
+            System.out.println("No quedan mes cartes al usuari");
         }
-        return aux;
     }
     
     public int cartesDisponibles(){
-        return BarajaUsuari.size();
+        return BarajaMonton.size();
     }
     
     public void demanarCartes(){
         Carta aux;
-        int numCartas = utils.LlegirIntLimitat("", 1, BarajaUsuari.size());
-        if (BarajaUsuari.size() < numCartas) {
-            System.out.println("No queden cartas");
+        int numCartas = utils.LlegirInt("Quantes cartes vols? ");
+        if (CartasUsuari.size() < numCartas || BarajaMonton.size() < numCartas) {
+            System.out.println("No queden suficients cartes");
         }
         else{
             for (int i = 0; i < numCartas; i++) {
-                aux = BarajaUsuari.get(0);
-                BarajaUsuari.remove(0);
-                BarajaUsuari.add(BarajaMonton.get(0));
+                aux = CartasUsuari.get(0);
+                CartasUsuari.remove(0);
+                CartasUsuari.add(BarajaMonton.get(0));
                 BarajaMonton.remove(0);
                 BarajaMonton.add(aux);
             }
@@ -57,15 +63,15 @@ public class Juego {
     }
     
     public void repartirCartes(){
-        int numCartas = utils.LlegirIntLimitat("", 1, BarajaUsuari.size());
-        if (BarajaUsuari.size() < numCartas) {
-            System.out.println("No queden cartas");
+        int numCartas = utils.LlegirIntLimitat("Quantes cartes vols? ", 1, CartasUsuari.size());
+        if (CartasUsuari.size() < numCartas) {
+            System.out.println("No quedan mes cartes al munt");
         }
         else{
             for (int i = 0; i < numCartas; i++) {
                 
-                BarajaUsuari.remove(0);
-                BarajaUsuari.add(BarajaMonton.get(0));
+                CartasUsuari.remove(0);
+                CartasUsuari.add(BarajaMonton.get(0));
                 BarajaMonton.remove(0);
                 
             }
@@ -73,8 +79,10 @@ public class Juego {
     }
     
     public void VeureMunt(){
-        for (int i = 0; i < BarajaMonton.size(); i++) {
-            BarajaMonton.get(i);
+        Carta c;
+        for (int i = 0; i < CartasTiradas.size(); i++) {
+            c = CartasTiradas.get(i);
+            System.out.println(c.toString());
         }
     }
     
