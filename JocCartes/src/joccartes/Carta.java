@@ -42,7 +42,35 @@ public class Carta {
     public Carta(){}
     
     public String toString(){
-        String result = this.num + " de "+ this.palo;
+        String result = this.getNum() + " de "+ this.getPalo();
         return result;
+    }
+
+    /**
+     * @return the num
+     */
+    public int getNum() {
+        return num;
+    }
+
+    /**
+     * @param num the num to set
+     */
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    /**
+     * @return the palo
+     */
+    public palo getPalo() {
+        return palo;
+    }
+
+    /**
+     * @param palo the palo to set
+     */
+    public void setPalo(palo palo) {
+        this.palo = palo;
     }
 }
