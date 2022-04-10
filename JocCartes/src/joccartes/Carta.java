@@ -9,42 +9,52 @@ package joccartes;
  *
  * @author ausias
  */
-public class Carta {
+public abstract class Carta {
     private int num;
     private palo palo;
     
      public enum palo{
+        DIAMANTES,
+        PICAS,
+        CORAZONES,
+        TREBOLES,
         OROS,
-        COPAS,
         BASTOS,
+        COPAS,
         ESPADAS
     }
     
-    public Carta(int num, int numPalo){
+    public Carta(int num, int numPalo) {
         this.num = num;
-        switch (numPalo){
-            case 0:
-                palo = palo.BASTOS;
-                break;
-            case 1:
-                palo = palo.COPAS;
-                break;
-            case 2:
-                palo = palo.ESPADAS;
-                break;
-            case 3:
-                palo = palo.OROS;
-                break;
+        if (numPalo == 0) {
+            palo = palo.DIAMANTES;
         }
-        
+        else if (numPalo == 1) {
+            palo = palo.CORAZONES;
+        }
+        else if (numPalo == 2) {
+            palo = palo.PICAS;
+        }
+        else if (numPalo == 3) {
+            palo = palo.TREBOLES;
+        }
+        else if (numPalo == 4) {
+            palo = palo.OROS;
+        }
+        else if (numPalo == 5) {
+            palo = palo.BASTOS;
+        }
+        else if (numPalo == 6) {
+            palo = palo.COPAS;
+        }
+        else if (numPalo == 7) {
+            palo = palo.ESPADAS;
+        }
     }
     
     public Carta(){}
     
-    public String toString(){
-        String result = this.getNum() + " de "+ this.getPalo();
-        return result;
-    }
+    public abstract String toString();
 
     /**
      * @return the num

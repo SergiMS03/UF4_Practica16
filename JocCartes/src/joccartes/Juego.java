@@ -60,17 +60,32 @@ public class Juego {
     private ArrayList<Carta> BarajaMonton = new ArrayList<>();
     private ArrayList<Carta> CartasTiradas = new ArrayList<>();
     
-    public Juego(){
-        for (int i = 0; i < 4; i++) {
-            for (int j = 1; j <= 12; j++) {
-                Carta c = new Carta(j, i);
-                BarajaMonton.add(c);
+    public Juego(int TipusBaraja, int quitar_8_9) {
+        if (TipusBaraja == 1) {
+            for (int i = 4; i <= 7; i++) {
+                for (int j = 1; j <= 12; j++) {
+                    if(quitar_8_9 == 2 && (j == 8 || j == 9)){
+                        //Si no volem el 8 i el 9 pasaran per aquest if i no es crearàn
+                    }
+                    else{
+                        Cartas_Espanolas B_Esp = new Cartas_Espanolas(j, i);
+                        BarajaMonton.add(B_Esp);
+                    }
+                }
+            }
+        } else {
+            for (int i = 0; i < 4; i++) {
+                for (int j = 1; j <= 13; j++) {
+                    Cartas_Francesas B_Fra = new Cartas_Francesas(j, i);
+                    BarajaMonton.add(B_Fra);
+                }
             }
         }
+
     }
     
     public void barreja(){
-        Collections.shuffle(getBarajaMonton());
+        Collections.shuffle(BarajaMonton);
     }
     
     public void seguentCarta(){//Mostra seguent carta del monton
